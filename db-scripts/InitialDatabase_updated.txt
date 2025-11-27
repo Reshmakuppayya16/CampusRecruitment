@@ -1,0 +1,49 @@
+CREATE DATABASE CampusRecruitment;
+GO
+
+CREATE TABLE Users (
+    UserId INT IDENTITY(1,1) PRIMARY KEY,
+    Email NVARCHAR(255) NOT NULL UNIQUE,
+    PasswordHash NVARCHAR(255) NOT NULL,
+    Role VARCHAR(20) NOT NULL CHECK (Role IN ('Student','Employer','Admin')),
+    CreatedAt DATETIME NOT NULL DEFAULT GETDATE(),
+    UpdatedAt DATETIME NULL,
+    IsActive BIT NOT NULL DEFAULT 1
+);
+
+
+GO
+
+CREATE TABLE Students (
+    StudentId INT IDENTITY(1,1) PRIMARY KEY,
+    UserId INT NOT NULL UNIQUE,
+    Role VARCHAR(20) NOT NULL CHECK (Role = 'Student'),
+    CreatedAt DATETIME NOT NULL DEFAULT GETDATE(),
+    IsActive BIT NOT NULL DEFAULT 1,
+    FOREIGN KEY (UserId) REFERENCES Users(UserId)
+);
+
+
+
+GO
+
+CREATE TABLE Employers (
+    EmployerId INT IDENTITY(1,1) PRIMARY KEY,
+    UserId INT NOT NULL UNIQUE,
+    Role VARCHAR(20) NOT NULL CHECK (Role = 'Employer'),
+    CreatedAt DATETIME NOT NULL DEFAULT GETDATE(),
+    IsActive BIT NOT NULL DEFAULT 1,
+    FOREIGN KEY (UserId) REFERENCES Users(UserId)
+);
+
+GO
+
+CREATE TABLE Admin (
+    AdminId INT IDENTITY PRIMARY KEY,
+    UserId INT FOREIGN KEY REFERENCES Users(UserId),
+    Role NVARCHAR(20) DEFAULT 'Admin',
+    CreatedDate DATETIME DEFAULT GETDATE(),
+    UpdatedDate DATETIME NULL,
+    IsActive BIT DEFAULT 1
+);
+GO
