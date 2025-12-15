@@ -1,0 +1,45 @@
+<div class="register-container">
+    <h2> Create Your Account </h2>
+
+    <form (ngSubmit)="register()">
+
+        <mat-form-field appearance="outline" class="full-width">
+             <mat-label>Full Name</mat-label>
+             <input matInput [(ngModel)]="FullName" name="FullName" required/>
+        </mat-form-field>
+
+         <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" [(ngModel)]="Email" name="Email" required />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" [(ngModel)]="PasswordHash" name="PasswordHash" required />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Confirm Password</mat-label>
+            <input matInput type="password" [(ngModel)]="ConfirmPassword" name="ConfirmPassword" required />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Role</mat-label>
+            <mat-select [(ngModel)]="Role" name="Role" required>
+                <mat-option value="Student">Student</mat-option>
+                <mat-option value="Employer">Employer</mat-option>
+                <mat-option value="Admin">Admin</mat-option>
+
+            </mat-select>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" class="full-width" type="submit">
+            Register
+        </button>
+    </form>
+
+    <p class="switch-link">
+         Already have an account?
+        <a routerLink="/login">Login here</a>
+    </p>
+</div>

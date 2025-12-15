@@ -1,0 +1,16 @@
+# Node
+node_modules/
+dist/
+
+# .NET
+bin/
+obj/
+.vs/
+
+# User files
+*.user
+*.suo
+
+# OS
+Thumbs.db
+.DS_Store

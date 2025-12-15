@@ -3,6 +3,7 @@ GO
 
 CREATE TABLE Users (
     UserId INT IDENTITY(1,1) PRIMARY KEY,
+    FullName VARCHAR(100) NOT NULL,
     Email NVARCHAR(255) NOT NULL UNIQUE,
     PasswordHash NVARCHAR(255) NOT NULL,
     Role VARCHAR(20) NOT NULL CHECK (Role IN ('Student','Employer','Admin')),
@@ -24,42 +25,11 @@ CREATE TABLE Student (
     FOREIGN KEY (UserId) REFERENCES Users(UserId)
 );
 
+
+
 GO
 
-CREATE TABLE StudentPersonalInfo (
-    PersonalInfoId INT IDENTITY(1,1) PRIMARY KEY,
-    StudentId INT NOT NULL UNIQUE,
-    DateOfBirth DATE NULL,
-    Gender NVARCHAR(20) NULL,
-    PhoneNumber NVARCHAR(20) NULL,
-    CreatedAt DATETIME NOT NULL DEFAULT(GETDATE()),
-    UpdatedAt DATETIME NULL,
-    IsActive BIT NOT NULL DEFAULT(1),
-
-    FOREIGN KEY(StudentId) REFERENCES Student(StudentId)
-);
-
-CREATE TABLE StudentEducation(
-  EducationId INT IDENTITY(1,1) PRIMARY KEY,
-  StudentId INT NOT NULL,
-  
-  UniversityName NVARCHAR(300) NOT NULL,
-  Degree NVARCHAR(200) NOT NULL,
-  Department NVARCHAR(300) NOT NULL,
-  StartYear INT NULL,
-  EndYear INT NULL,
-  CurrentSemester INT NULL,
-  CGPA DECIMAL(3,2) NULL,
-  Skills NVARCHAR(MAX) NULL,
-  
-  CreatedAt DATETIME NOT NULL DEFAULT (GETDATE()),
-  UpdatedAt DATETIME NULL,
-  IsActive BIT NOT NULL DEFAULT(1),
-  
-  FOREIGN KEY(StudentId) REFERENCES Student(StudentId)) ;
-
-
-CREATE TABLE Employers (
+CREATE TABLE Employer (
     EmployerId INT IDENTITY(1,1) PRIMARY KEY,
     UserId INT NOT NULL UNIQUE,
     Role VARCHAR(20) NOT NULL CHECK (Role = 'Employer'),

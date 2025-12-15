@@ -1,0 +1,42 @@
+<div class="dashboard-layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <h3 class="sidebar-title">Menu</h3>
+
+        <ul class="sidebar-menu">
+            <li routerLink="/dashboard/profile" routerLinkActive="active">Profile</li>
+            <li>Jobs</li>
+            <li>Employer</li>
+            <li>Inbox</li>
+        </ul>
+    </aside>
+
+    <!-- Main Area -->
+    <main class="main-area">
+
+        <!-- Header -->
+        <header class="dashboard-header">
+            <div></div>
+            <div class="user-info">
+                <span>Hello, <b>{{ FullName }}</b></span>
+                <button class="logout-btn" (click)="logout()">Logout</button>
+            </div>
+        </header>
+
+        <!-- Content -->
+        <section class="dashboard-content">
+
+            <!-- Show only when NOT inside profile -->
+            <div *ngIf="showWelcome">
+                <h2>Welcome to Dashboard</h2>
+                <p>Select a menu option from the left.</p>
+            </div>
+
+            <!-- Loads Profile (Personal/Education/Address), Jobs, etc -->
+            <router-outlet (activate)="onChildLoad()"></router-outlet>
+
+        </section>
+
+    </main>
+</div>

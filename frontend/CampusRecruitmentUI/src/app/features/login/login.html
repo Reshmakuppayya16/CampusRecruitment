@@ -1,0 +1,38 @@
+<div class="login-container">
+  <h2>Login</h2>
+
+  <form (ngSubmit)="onLogin()" #loginForm="ngForm" class="login-form">
+    
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input
+        matInput
+        type="email"
+        [(ngModel)]="Email"
+        name="Email"
+        required
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <input
+        matInput
+        type="password"
+        [(ngModel)]="PasswordHash"
+        name="PasswordHash"
+        required
+      />
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit">
+      Login
+    </button>
+
+    <p class="register-link">
+      Don’t have an account?
+      <a routerLink="/register">Register here</a>
+    </p>
+
+  </form>
+</div>

@@ -1,0 +1,6 @@
+@CampusRecruitmentBackend_HostAddress = http://localhost:5126
+
+GET {{CampusRecruitmentBackend_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
